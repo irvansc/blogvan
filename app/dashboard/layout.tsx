@@ -3,7 +3,7 @@ import React from "react";
 import Logo from "@/public/logo.svg";
 import Image from "next/image";
 import { DashboardItems } from "@/app/components/dashboard/DashboardItems";
-import { CircleUser, DollarSign, Globe, HomeIcon } from "lucide-react";
+import { CircleUser, DollarSign, Globe, HomeIcon, Menu } from "lucide-react";
 import { ModeToggle } from "@/app/components/dashboard/ThemeToggle";
 import {
   DropdownMenu,
@@ -37,7 +37,7 @@ export default function DashboardLayout({
 }) {
   return (
     <section className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
-      <div className="hidden  border-r bg-muted/40 md:block">
+      <div className="hidden border-r bg-muted/40 md:block">
         <div className="flex h-full max-h-screen flex-col gap-2">
           <div className="flex h-14 items-center px-4 border-b lg:h-[60px] lg:px-6">
             <Link
@@ -61,6 +61,22 @@ export default function DashboardLayout({
 
       <div className="flex flex-col">
         <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
+          {/* Tambahkan Icon Menu untuk Mobile di sebelah kiri */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="secondary"
+                size="icon"
+                className="rounded-full md:hidden"
+              >
+                <Menu className="size-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start">
+              <DashboardItems />
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           <div className="ml-auto flex items-center gap-x-5">
             <ModeToggle />
 
