@@ -28,7 +28,7 @@ export async function GET() {
     }
     return NextResponse.redirect(
         process.env.NODE_ENV === "production"
-            ? "https://blog-van.vercel.app/dasboard"
+            ? "https://blog-van.vercel.app/dashboard"
             : "http://localhost:3000/dashboard"
     );
 }
