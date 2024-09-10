@@ -57,7 +57,10 @@ export default async function PricingPage() {
     // Membuat sesi portal pelanggan di Stripe.
     const session = await stripe.billingPortal.sessions.create({
       customer: data?.User?.customerId as string,
-      return_url: "http://localhost:3000/dashboard",
+      return_url:
+        process.env.NODE_ENV === "production"
+          ? "https://blog-van.vercel.app/dashboard"
+          : "http://localhost:3000/dashboard",
     });
 
     return redirect(session.url); // Mengarahkan pengguna ke URL sesi portal pelanggan.

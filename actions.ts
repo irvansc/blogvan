@@ -232,8 +232,14 @@ export async function CreateSubscription() {
         payment_method_types: ["card"],
         line_items: [{ price: process.env.STRIPE_PRICE_ID, quantity: 1 }],
         customer_update: { address: "auto", name: "auto" },
-        success_url: 'http://localhost:3000/dashboard/payment/success',
-        cancel_url: 'http://localhost:3000/dashboard/payment/cancelled',
+        success_url:
+            process.env.NODE_ENV === "production"
+                ? "https://blog-van.vercel.app/dashboard/payment/success"
+                : "http://localhost:3000/dashboard/payment/success",
+        cancel_url:
+            process.env.NODE_ENV === "production"
+                ? "https://blog-van.vercel.app/dashboard/payment/cancelled"
+                : "http://localhost:3000/dashboard/payment/cancelled",
     });
 
     return redirect(session.url as string); // Mengarahkan ke URL sesi checkout Stripe.
